@@ -69,7 +69,7 @@ RUN set -eux; \
             /home/nacos/bin/* \
             /home/nacos/conf/*.properties \
             /home/nacos/conf/*.example \
-            /home/nacos/conf/nacos-mysql.sql; \
+            /home/nacos/conf/nacos-mysql.sql
 
 # 复制脚本
 ADD bin/docker-startup.sh bin/docker-startup.sh
