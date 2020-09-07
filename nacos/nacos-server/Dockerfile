@@ -60,9 +60,9 @@ RUN set -eux; \
             /home/nacos/conf/nacos-mysql.sql; \
 
 # 复制脚本
-COPY bin/ bin/
-ADD conf/ conf/
-ADD init.d/ init.d/
+ADD bin/docker-startup.sh bin/docker-startup.sh
+ADD conf/application.properties conf/application.properties
+ADD init.d/custom.properties init.d/custom.properties
 
 # 创建指定UID/GID的用户和需要的目录
 RUN set -eux; \
