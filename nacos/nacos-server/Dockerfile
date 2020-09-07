@@ -87,7 +87,7 @@ RUN set -eux; \
     cd logs; \
     touch start.out; \
     ln -sf /dev/stdout start.out; \
-    ln -sf /dev/stderr start.out; \
+    ln -sf /dev/stderr start.out
 
 EXPOSE 8848
 
