@@ -22,11 +22,7 @@ ENV TZ="Asia/Shanghai" \
 RUN set -eux; \
     apt-get update; \
     DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y --no-install-recommends \
-        iputils \
-        nc \
-        libcurl\
-        wget; \
+    apt-get install -y --no-install-recommends wget; \
     rm -rf /var/lib/apt/lists/*; \
 # 验证gosu命令是否能用
     gosu nobody true
