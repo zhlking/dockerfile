@@ -11,4 +11,4 @@ ENV CANAL_ADMIN_DATABASE=canal_manager \
 
 EXPOSE 3306
 
-ENTRYPOINT ["/bin/bash", "-c", "/docker-entrypoint.sh && /canal-mysql-init.sh && mysqld"]
+ENTRYPOINT ["/bin/bash", "-c", "/entrypoint.sh && /canal-mysql-init.sh && mysqld"]
