@@ -59,5 +59,5 @@ docker_setup_db() {
 	fi
 }
 
-/etc/init.d/mysql start
+/etc/init.d/mysql restart
 docker_setup_db
