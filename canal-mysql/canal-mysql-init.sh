@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 #日志格式
 mysql_log() {
 	local type="$1"; shift
@@ -52,7 +52,12 @@ docker_setup_db() {
 			docker_process_sql --database=mysql <<<"GRANT ALL ON \`${DB_NAME//_/\\_}\`.* TO '$DB_USER'@'%' ;"
 		fi
 
+    docker_process_sql < /tmp/canal_manager.sql
+
 		docker_process_sql --database=mysql <<<"FLUSH PRIVILEGES ;"
 		mysql_note "${DB_NAME}数据库创建完成，已授权给${DB_USER}"
 	fi
 }
+
+docker_setup_db
+/etc/init.d/mysql start

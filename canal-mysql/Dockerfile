@@ -1,7 +1,7 @@
 #canal-admin V1.1.4
 FROM mysql:5.7.31
 
-COPY canal_manager.sql /docker-entrypoint-initdb.d/
+COPY canal_manager.sql /tmp/
 COPY canal-mysql-init.sh /usr/local/bin/
 
 RUN ln -s usr/local/bin/canal-mysql-init.sh /init.sh \
@@ -15,4 +15,4 @@ ENV CANAL_ADMIN_DATABASE=canal_manager \
 
 EXPOSE 3306
 
-ENTRYPOINT docker-entrypoint.sh && canal-mysql-init.sh && mysqld
+RUN ["/init.sh"]
