@@ -13,4 +13,4 @@ ENV CANAL_ADMIN_DATABASE=canal_manager \
 
 EXPOSE 3306
 
-ENTRYPOINT ["/bin/bash", "-c", "/canal-mysql-init.sh && mysqld"]
+CMD ["/bin/bash", "-c", "/canal-mysql-init.sh && mysqld"]

@@ -1,6 +1,10 @@
 #!/bin/bash
 
 #日志格式
+mysql_log() {
+	local type="$1"; shift
+	printf '%s [%s] [Entrypoint]: %s\n' "$(date --rfc-3339=seconds)" "$type" "$*"
+}
 mysql_note() {
 	mysql_log Note "$@"
 }
