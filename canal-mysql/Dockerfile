@@ -4,6 +4,8 @@ FROM mysql:5.7.31
 COPY canal_manager.sql /docker-entrypoint-initdb.d/
 COPY canal-mysql-init.sh /
 
+RUN chmod 775 /canal-mysql-init.sh
+
 ENV CANAL_ADMIN_DATABASE=canal_manager \
     CANAL_ADMIN_USER=canal \
     CANAL_ADMIN_PASSWORD=canal \
@@ -11,4 +13,4 @@ ENV CANAL_ADMIN_DATABASE=canal_manager \
 
 EXPOSE 3306
 
-ENTRYPOINT ["/bin/bash", "-c", "/entrypoint.sh && /canal-mysql-init.sh && mysqld"]
+ENTRYPOINT ["/bin/bash", "-c", "/canal-mysql-init.sh && mysqld"]
