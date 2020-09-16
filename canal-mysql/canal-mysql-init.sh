@@ -1,13 +1,4 @@
 #!/bin/bash
-set -e
-#日志格式
-mysql_log() {
-	local type="$1"; shift
-	printf '%s [%s] [Entrypoint]: %s\n' "$(date --rfc-3339=seconds)" "$type" "$*"
-}
-mysql_note() {
-	mysql_log Note "$@"
-}
 
 #设置数据库变量
 MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
@@ -20,6 +11,12 @@ DB_PASSWD=$CANAL_ADMIN_PASSWORD
 #    ie: docker_process_sql --database=mydb <<<'INSERT ...'
 #    ie: docker_process_sql --dont-use-mysql-root-password --database=mydb <my-file.sql
 docker_process_sql() {
+	passfileArgs=()
+	if [ '--dont-use-mysql-root-password' = "$1" ]; then
+		passfileArgs+=( "$1" )
+		shift
+	fi
+
 	mysql --defaults-extra-file=<( _mysql_passfile "${passfileArgs[@]}") -uroot -hlocalhost "$@"
 }
 
@@ -52,7 +49,7 @@ docker_setup_db() {
 			docker_process_sql --database=mysql <<<"GRANT ALL ON \`${DB_NAME//_/\\_}\`.* TO '$DB_USER'@'%' ;"
 		fi
 
-    docker_process_sql < /tmp/canal_manager.sql
+    docker_process_sql --dont-use-mysql-root-password --database="${DB_NAME}" </tmp/canal_manager.sql
 
 		docker_process_sql --database=mysql <<<"FLUSH PRIVILEGES ;"
 		mysql_note "${DB_NAME}数据库创建完成，已授权给${DB_USER}"
