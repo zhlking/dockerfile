@@ -16,14 +16,7 @@ ENV TZ="Asia/Shanghai" \
     # 平台管理密码    {canal.adminPasswd}
     CANAL_ADMIN_PASSWD=admin \
     # 平台访问端口    ｛server.port｝
-    CANAL_SERVER_PORT=8089 \
-    spring.datasource.address=$CANAL_MYSQL_ADDR \
-    spring.datasource.database=$CANAL_MYSQL_NAME \
-    spring.datasource.username=$CANAL_MYSQL_USER \
-    spring.datasource.password=$CANAL_MYSQL_PASSWD \
-    canal.adminUser=$CANAL_ADMIN_USER \
-    canal.adminPasswd=$CANAL_ADMIN_PASSWD \
-    server.port=$CANAL_SERVER_PORT
+    CANAL_SERVER_PORT=8089
 
 
 #更换源
