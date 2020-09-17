@@ -98,15 +98,15 @@ function stop_admin() {
 function conf_file() {
 cat << EOF > /home/admin/canal-admin/conf/application.yml
 server:
-  port: \$CANAL_SERVER_PORT
+  port: $CANAL_SERVER_PORT
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 spring.datasource:
-  address: \$CANAL_MYSQL_ADDR:3306
-  database: \$CANAL_MYSQL_NAME
-  username: \$CANAL_MYSQL_USER
+  address: $CANAL_MYSQL_ADDR:3306
+  database: $CANAL_MYSQL_NAME
+  username: $CANAL_MYSQL_USER
   password: $CANAL_MYSQL_PASSWD
   driver-class-name: com.mysql.jdbc.Driver
   url: jdbc:mysql://\${spring.datasource.address}/\${spring.datasource.database}?useUnicode=true&characterEncoding=UTF-8&useSSL=false
@@ -114,8 +114,8 @@ spring.datasource:
     maximum-pool-size: 30
     minimum-idle: 1
 canal:
-  adminUser: \$CANAL_ADMIN_USER
-  adminPasswd: \$CANAL_ADMIN_PASSWD
+  adminUser: $CANAL_ADMIN_USER
+  adminPasswd: $CANAL_ADMIN_PASSWD
 EOF
 }
 
