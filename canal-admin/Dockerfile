@@ -37,6 +37,7 @@ RUN set -eux; \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y --no-install-recommends \
     gosu \
+    file \
     wget; \
     rm -rf /var/lib/apt/lists/*; \
 # 验证gosu命令是否能用

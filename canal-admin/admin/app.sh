@@ -2,13 +2,11 @@
 set -e
 
 source /etc/profile
-export JAVA_HOME=/usr/java/latest
+export JAVA_HOME=/usr/local/openjdk-8
 export PATH=$JAVA_HOME/bin:$PATH
 touch /tmp/start.log
 chown admin: /tmp/start.log
 chown -R admin: /home/admin/canal-admin/logs
-# shellcheck disable=SC2034
-host=$(hostname -i)
 
 
 # waitterm
@@ -85,7 +83,7 @@ function start_admin() {
     if [ -z "$CANAL_SERVER_PORT" ] ; then
         CANAL_SERVER_PORT=8089
     fi
-    su admin -c 'cd /home/admin/canal-admin/bin/ && sh restart.sh 1>>/tmp/start.log 2>&1'
+    gosu admin 'cd /home/admin/canal-admin/bin/ && sh restart.sh 1>>/tmp/start.log 2>&1'
     sleep 5
     #check start
     checkStart "canal" "nc 127.0.0.1 $CANAL_SERVER_PORT -w 1 -z | wc -l" 30
@@ -93,7 +91,7 @@ function start_admin() {
 
 function stop_admin() {
     echo "stop admin"
-    su admin -c 'cd /home/admin/canal-admin/bin/ && sh stop.sh 1>>/tmp/start.log 2>&1'
+    gosu admin 'cd /home/admin/canal-admin/bin/ && sh stop.sh 1>>/tmp/start.log 2>&1'
     echo "stop admin successful ..."
 }
 
