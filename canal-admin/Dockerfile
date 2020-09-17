@@ -45,7 +45,7 @@ RUN set -eux; \
 # 创建指定UID/GID的用户和需要的目录
 RUN set -eux; \
     groupadd -r admin --gid=1000; \
-    useradd -r /home/admin -g admin --uid=1000 admin;
+    useradd -d /home/admin -g admin --uid=1000 admin;
 
 ARG CANAL_VERSION=1.1.4
 
