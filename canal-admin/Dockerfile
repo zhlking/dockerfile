@@ -51,11 +51,6 @@ RUN set -eux; \
 # 验证gosu命令是否能用
     gosu nobody true
 
-# 创建指定UID/GID的用户和需要的目录
-RUN set -eux; \
-    groupadd -r admin --gid=1000; \
-    useradd -d /home/admin -g admin --uid=1000 admin;
-
 ARG CANAL_VERSION=1.1.4
 
 # 下载 Nacos
@@ -72,14 +67,23 @@ RUN set -eux; \
         [ -n "$success" ]; \
     }; \
     ddist "canal.admin-${CANAL_VERSION}.tar.gz" "canal-${CANAL_VERSION}/canal.admin-${CANAL_VERSION}.tar.gz"; \
-    mkdir -p /home/admin/canal-admin && \
+    mkdir -p /home/admin/canal-admin; \
     tar -zxf "canal.admin-${CANAL_VERSION}.tar.gz" -C /home/admin/canal-admin; \
-    rm -rf  canal.admin-${CANAL_VERSION}.tar.gz \
-            /home/admin/canal-admin/bin/*.bat
+    rm -rf canal.admin-${CANAL_VERSION}.tar.gz \
+           /home/admin/canal-admin/bin/*.bat
+
+# 创建指定UID/GID的用户和需要的目录
+RUN set -eux; \
+    groupadd -r admin --gid=1000; \
+    useradd -d /home/admin -g admin --uid=1000 admin; \
+    chown -R admin: /home/admin/canal-admin; \
+    chmod -R 755 /home/admin/canal-admin
+
 
 ADD admin/ /home/admin/canal-admin/bin/
+
 WORKDIR /home/admin
 
 EXPOSE 8089
 
-CMD "/bin/bash" "-c" "/home/admin/canal-admin/bin/app.sh"
+CMD ["/home/admin/canal-admin/bin/app.sh"]
