@@ -6,7 +6,7 @@ export JAVA_HOME=/usr/java/latest
 export PATH=$JAVA_HOME/bin:$PATH
 touch /tmp/start.log
 chown admin: /tmp/start.log
-chown -R admin: /home/admin/canal-admin
+chown -R admin: /home/admin/canal-admin/logs
 # shellcheck disable=SC2034
 host=$(hostname -i)
 
@@ -52,7 +52,6 @@ waittermpid() {
         trap - TERM INT
         return "${error}"
 }
-
 
 function checkStart() {
     local name=$1
