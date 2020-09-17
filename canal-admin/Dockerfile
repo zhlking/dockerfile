@@ -17,6 +17,7 @@ ENV TZ="Asia/Shanghai" \
     CANAL_ADMIN_PASSWD=admin \
     # 平台访问端口    ｛server.port｝
     CANAL_SERVER_PORT=8089
+
 #更换源
 RUN set -eux; \
     echo ' \
@@ -46,7 +47,7 @@ RUN set -eux; \
     groupadd -r admin --gid=1000; \
     useradd -r /home/admin -g admin --uid=1000 admin;
 
-ARG CANAL_VERSION=1.1.4 \
+ARG CANAL_VERSION=1.1.4
 
 # 下载 Nacos
 RUN set -eux; \
