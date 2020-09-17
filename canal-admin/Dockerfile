@@ -82,4 +82,4 @@ WORKDIR /home/admin
 
 EXPOSE 8089
 
-CMD "/bin/bash" "-c" "/home/admin/canal-admin/bin/startup.sh"
+CMD "/bin/bash" "-c" "/home/admin/canal-admin/bin/app.sh"
