@@ -86,7 +86,7 @@ function start_admin() {
     cd /home/admin/canal-admin/bin/ && gosu admin sh restart.sh 1>>/tmp/start.log 2>&1
     sleep 5
     #check start
-    checkStart "canal" "nc 127.0.0.1 $CANAL_SERVER_PORT -w 1 -z | wc -l" 30
+#    checkStart "canal" "nc 127.0.0.1 $CANAL_SERVER_PORT -w 1 -z | wc -l" 30
 }
 
 function stop_admin() {

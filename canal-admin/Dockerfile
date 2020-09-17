@@ -72,15 +72,14 @@ RUN set -eux; \
     rm -rf canal.admin-${CANAL_VERSION}.tar.gz \
            /home/admin/canal-admin/bin/*.bat
 
+ADD admin/ /home/admin/canal-admin/bin/
+
 # 创建指定UID/GID的用户和需要的目录
 RUN set -eux; \
     groupadd -r admin --gid=1000; \
     useradd -d /home/admin -g admin --uid=1000 admin; \
     chown -R admin: /home/admin/canal-admin; \
     chmod -R 755 /home/admin/canal-admin
-
-
-ADD admin/ /home/admin/canal-admin/bin/
 
 WORKDIR /home/admin
 
