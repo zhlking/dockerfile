@@ -56,13 +56,13 @@ RUN set -eux; \
         [ -n "$success" ]; \
     }; \
     ddist "$CanalUrl" "canal.deployer-${CANAL_VERSION}.tar.gz" "canal-${CANAL_VERSION}/canal.deployer-${CANAL_VERSION}.tar.gz"; \
-#    ddist "$MetricsUrl" "node_exporter-$Metrics_VERSION.linux-arm64.tar.gz" "v$Metrics_VERSION/node_exporter-$Metrics_VERSION.linux-arm64.tar.gz"; \
+#    ddist "$MetricsUrl" "node_exporter-$Metrics_VERSION.linux-amd64.tar.gz" "v$Metrics_VERSION/node_exporter-$Metrics_VERSION.linux-amd64.tar.gz"; \
     mkdir -p /home/admin/canal-server; \
     tar -zxf "canal.deployer-${CANAL_VERSION}.tar.gz" -C /home/admin/canal-server; \
-#    tar -zxf "node_exporter-$Metrics_VERSION.linux-arm64.tar.gz" -C /home/admin/; \
-#    mv /home/admin/node_exporter-$Metrics_VERSION.linux-arm64 /home/admin/node_exporter; \
+#    tar -zxf "node_exporter-$Metrics_VERSION.linux-amd64.tar.gz" -C /home/admin/; \
+#    mv /home/admin/node_exporter-$Metrics_VERSION.linux-amd64 /home/admin/node_exporter; \
     rm -rf canal.deployer-${CANAL_VERSION}.tar.gz \
-#           node_exporter-$Metrics_VERSION.linux-arm64.tar.gz \
+#           node_exporter-$Metrics_VERSION.linux-amd64.tar.gz \
            /home/admin/canal-server/bin/*.bat
 
 ADD bin/ /home/admin/canal-server/bin/
