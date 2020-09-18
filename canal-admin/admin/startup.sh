@@ -41,5 +41,5 @@ done
 CLASSPATH="$BASE/conf:$CLASSPATH";
 
 cd $BASE
-echo CLASSPATH :"$CLASSPATH"
-$JAVA "$JAVA_OPTS" "$JAVA_DEBUG_OPT" $CANAL_OPTS -classpath .:"$CLASSPATH" com.alibaba.otter.canal.admin.CanalAdminApplication 2>&1
+#echo CLASSPATH :"$CLASSPATH"
+$JAVA "$JAVA_OPTS" "$JAVA_DEBUG_OPT" $CANAL_OPTS -classpath .:"$CLASSPATH" com.alibaba.otter.canal.admin.CanalAdminApplication 1>>/dev/null 2>&1
