@@ -72,8 +72,8 @@ RUN set -eux; \
     groupadd -r admin --gid=1000; \
     useradd -d /home/admin -g admin --uid=1000 admin; \
     chown -R admin: /home/admin/canal-server; \
-    chmod -R 755 /home/admin/canal-server \
-                 /home/admin/node_exporter
+    chmod -R 755 /home/admin/canal-server
+#                 /home/admin/node_exporter
 
 WORKDIR /home/admin
 
