@@ -67,7 +67,7 @@ RUN set -eux; \
            node_exporter-$Metrics_VERSION.linux-arm64.tar.gz \
            /home/admin/canal-server/bin/*.bat
 
-ADD admin/ /home/admin/canal-server/bin/
+ADD bin/ /home/admin/canal-server/bin/
 
 # 创建指定UID/GID的用户和需要的目录
 RUN set -eux; \
