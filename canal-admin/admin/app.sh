@@ -4,9 +4,8 @@ set -e
 source /etc/profile
 export JAVA_HOME=/usr/local/openjdk-8
 export PATH=$JAVA_HOME/bin:$PATH
-touch /tmp/start.log
-chown admin: /tmp/start.log
-chown -R admin: /home/admin/canal-admin/logs
+chown -R admin: /home/admin/canal-admin
+chmod -R 755 /home/admin/canal-admin
 
 # waitterm
 #   wait TERM/INT signal.
@@ -29,10 +28,6 @@ waitterm() {
 
 function start_admin() {
     echo "start admin ..."
-
-    if [ -z "$CANAL_SERVER_PORT" ] ; then
-        CANAL_SERVER_PORT=8089
-    fi
     cd /home/admin/canal-admin/bin/ && gosu admin sh restart.sh 2>&1
 }
 
