@@ -4,7 +4,7 @@ MAINTAINER zhlking (zhlking@cnklog.com)
 
 ENV TZ="Asia/Shanghai" \
     # canal-admin访问地址    {canal.admin.manager}
-    CANAL_ADMIN_ADDR=$CANAL_ADMIN_SVC_SERVICE_PORT \
+    CANAL_ADMIN_ADDR=$CANAL_ADMIN_SVC_SERVICE_HOST:$CANAL_ADMIN_SVC_SERVICE_PORT \
     # 平台对接账户    {canal.admin.user}
     CANAL_ADMIN_USER=admin \
     # 平台对接密码 base64加密   {canal.admin.passwd}
