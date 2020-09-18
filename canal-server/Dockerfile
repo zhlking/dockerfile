@@ -6,11 +6,11 @@ ENV TZ="Asia/Shanghai" \
     # canal-admin访问地址    {canal.admin.manager}
     CANAL_ADMIN_ADDR="" \
     # 平台对接账户    {canal.admin.user}
-    CANAL_ADMIN_USER=admin \
+    CANAL_ADMIN_USER=canal \
     # 平台对接密码 base64加密   {canal.admin.passwd}
     CANAL_ADMIN_PASSWD=4ACFE3202A5FF5CF467898FC58AAB1D615029441 \
-    # 平台访问端口    ｛canal.admin.register.cluster｝
-    CANAL_CLUSTER=CanalDigit
+    # 可以指定默认注册的集群名，如果不指定，默认注册为单机模式    ｛canal.admin.register.cluster｝
+    CANAL_CLUSTER="Uni_Digit"
 
 #更换源
 RUN set -eux; \
@@ -73,10 +73,10 @@ RUN set -eux; \
     useradd -d /home/admin -g admin --uid=1000 admin; \
     chown -R admin: /home/admin/canal-server; \
     chmod -R 755 /home/admin/canal-server
-#                 /home/admin/node_exporter
+#                /home/admin/node_exporter
 
 WORKDIR /home/admin
 
 EXPOSE 11110 11111 11112 9100
 
-CMD ["/home/admin/canal-server/bin/app.sh"]
+CMD /home/admin/canal-server/bin/app.sh
