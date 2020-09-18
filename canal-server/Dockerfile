@@ -8,7 +8,7 @@ ENV TZ="Asia/Shanghai" \
     # 平台对接账户    {canal.admin.user}
     CANAL_ADMIN_USER=admin \
     # 平台对接密码 base64加密   {canal.admin.passwd}
-    CANAL_ADMIN_PASSWD=admin \
+    CANAL_ADMIN_PASSWD=4ACFE3202A5FF5CF467898FC58AAB1D615029441 \
     # 平台访问端口    ｛canal.admin.register.cluster｝
     CANAL_CLUSTER=CanalDigit
 
