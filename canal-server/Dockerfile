@@ -5,8 +5,6 @@ MAINTAINER zhlking (zhlking@cnklog.com)
 ENV TZ="Asia/Shanghai" \
     # canal-admin访问地址    {canal.admin.manager}
     CANAL_ADMIN_ADDR=127.0.0.1:8089 \
-    # 暴露端口   {canal.admin.port}
-    CANAL_ADMIN_PORT=11110 \
     # 平台对接账户    {canal.admin.user}
     CANAL_ADMIN_USER=admin \
     # 平台对接密码 base64加密   {canal.admin.passwd}
