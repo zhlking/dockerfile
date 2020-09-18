@@ -44,7 +44,7 @@ function stop_exporter() {
 }
 
 function conf_file() {
-cat << EOF > /home/canal/conf/canal.properties
+cat << EOF > /home/admin/canal-server/conf/canal.properties
 # register ip
 # \${HOSTNAME} 为podname,StatefulSet类型pod名称是固定的
 canal.register.ip = ${HOSTNAME}
