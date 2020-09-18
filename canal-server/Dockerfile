@@ -39,8 +39,8 @@ RUN set -eux; \
 
 ARG CANAL_VERSION=1.1.4
 ARG CanalUrl="https://github.com/alibaba/canal/releases/download/"
-ARG Metrics_VERSION=0.18.1
-ARG MetricsUrl="https://github.com/prometheus/node_exporter/releases/download/"
+#ARG Metrics_VERSION=0.18.1
+#ARG MetricsUrl="https://github.com/prometheus/node_exporter/releases/download/"
 
 # 下载 Nacos
 RUN set -eux; \
@@ -56,7 +56,7 @@ RUN set -eux; \
         [ -n "$success" ]; \
     }; \
     ddist "$CanalUrl" "canal.deployer-${CANAL_VERSION}.tar.gz" "canal-${CANAL_VERSION}/canal.deployer-${CANAL_VERSION}.tar.gz"; \
-    ddist "$MetricsUrl" "node_exporter-$Metrics_VERSION.linux-arm64.tar.gz" "v$Metrics_VERSION/node_exporter-$Metrics_VERSION.linux-arm64.tar.gz"; \
+#    ddist "$MetricsUrl" "node_exporter-$Metrics_VERSION.linux-arm64.tar.gz" "v$Metrics_VERSION/node_exporter-$Metrics_VERSION.linux-arm64.tar.gz"; \
     mkdir -p /home/admin/canal-server; \
     tar -zxf "canal.deployer-${CANAL_VERSION}.tar.gz" -C /home/admin/canal-server; \
     tar -zxf "node_exporter-$Metrics_VERSION.linux-arm64.tar.gz" -C /home/admin/; \
