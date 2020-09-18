@@ -33,12 +33,12 @@ function start_admin() {
     if [ -z "$CANAL_SERVER_PORT" ] ; then
         CANAL_SERVER_PORT=8089
     fi
-    cd /home/admin/canal-admin/bin/ && gosu admin sh restart.sh 2>&1 &
+    cd /home/admin/canal-admin/bin/ && gosu admin sh restart.sh 2>&1
 }
 
 function stop_admin() {
     echo "stop admin"
-    cd /home/admin/canal-admin/bin/ && gosu admin sh stop.sh  2>&1 &
+    cd /home/admin/canal-admin/bin/ && gosu admin sh stop.sh  2>&1
     echo "stop admin successful ..."
 }
 
