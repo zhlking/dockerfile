@@ -1,10 +1,11 @@
 #!/bin/bash
 set -e
 
-source /etc/profile
+#source /etc/profile
 export JAVA_HOME=/usr/local/openjdk-8
 export PATH=$JAVA_HOME/bin:$PATH
 chown -R admin: /home/admin/canal-server
+chmod -R 755 /home/admin/canal-server
 
 # waitterm
 #   wait TERM/INT signal.
@@ -26,21 +27,7 @@ waitterm() {
 
 function start_canal() {
     echo "start canal ..."
-    cd /home/admin/canal-server/bin/ && gosu admin sh restart.sh 2>&1
-}
-
-function stop_canal() {
-    echo "stop canal"
-    cd /home/admin/canal-server/bin/ && gosu admin sh stop.sh 2>&1
-    echo "stop canal successful ..."
-}
-
-function start_exporter() {
-    cd /home/admin/node_exporter && gosu admin ./node_exporter 2>&1
-}
-
-function stop_exporter() {
-    gosu admin killall node_exporter
+    cd /home/admin/canal-server/bin/ && gosu admin sh startup.sh 2>&1
 }
 
 function conf_file() {
@@ -58,24 +45,14 @@ canal.admin.register.auto = true
 canal.admin.register.cluster = $CANAL_CLUSTER
 EOF
 }
+
 echo "==> 创建配置文件 ..."
 
 conf_file
 
 echo "==> START ..."
 
-start_exporter
+#start_exporter
 start_canal
 
 echo "==> START SUCCESSFUL ..."
-
-tail -f /dev/null &
-# wait TERM signal
-waitterm
-
-echo "==> STOP"
-
-stop_canal
-start_exporter
-
-echo "==> STOP SUCCESSFUL ..."
