@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 set -e
 
 source /etc/profile
@@ -46,11 +46,11 @@ function stop_exporter() {
 function conf_file() {
 cat << EOF > /home/canal/conf/canal.properties
 # register ip
-# ${HOSTNAME} 为podname,StatefulSet类型pod名称是固定的
+# \${HOSTNAME} 为podname,StatefulSet类型pod名称是固定的
 canal.register.ip = ${HOSTNAME}
 # canal admin config
 canal.admin.manager = $CANAL_ADMIN_ADDR
-canal.admin.port = $CANAL_ADMIN_PORT
+canal.admin.port = 11110
 canal.admin.user = $CANAL_ADMIN_USER
 canal.admin.passwd = $CANAL_ADMIN_PASSWD
 # admin auto register
