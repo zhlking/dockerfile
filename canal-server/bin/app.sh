@@ -18,3 +18,4 @@ canal.admin.register.auto = true
 canal.admin.register.cluster = $CANAL_CLUSTER
 EOF
 
+sh /home/admin/canal-server/bin/startup.sh
