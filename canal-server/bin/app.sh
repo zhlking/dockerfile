@@ -31,6 +31,10 @@ function start_canal() {
 }
 
 function conf_file() {
+if [ -z "$CANAL_ADMIN_ADDR" ] ; then
+  CANAL_ADMIN_ADDR="$CANAL_ADMIN_SVC_SERVICE_HOST:$CANAL_ADMIN_SVC_SERVICE_PORT"
+  echo $CANAL_ADMIN_ADDR
+fi
 cat << EOF > /home/admin/canal-server/conf/canal.properties
 # register ip
 # \${HOSTNAME} 为podname,StatefulSet类型pod名称是固定的
