@@ -6,8 +6,11 @@ MAINTAINER zhlking (zhlking@cnklog.com)
 ARG XXL_JOB_VERSION=2.2.0
 
 RUN set -eux; \
+    apt-get update; \
+    apt-get install -y wget; \
+    rm -rf /var/lib/apt/lists/*; \
     cd /docker-entrypoint-initdb.d/; \
-    if wget -q -O "tables_xxl_job.sql" "https://github.com/xuxueli/xxl-job/blob/$XXL_JOB_VERSION/doc/db/tables_xxl_job.sql" \
+    if wget -O "tables_xxl_job.sql" "https://github.com/xuxueli/xxl-job/blob/$XXL_JOB_VERSION/doc/db/tables_xxl_job.sql" \
     && [ -s tables_xxl_job.sql ]; then \
         success=1; \
         break; \
