@@ -78,7 +78,5 @@ cd $bin_abs_path
 
 echo CLASSPATH :$CLASSPATH
 $JAVA $JAVA_OPTS $JAVA_DEBUG_OPT $CANAL_OPTS -classpath .:$CLASSPATH com.alibaba.otter.canal.admin.CanalAdminApplication 2>&1 
-echo $! > $base/bin/admin.pid
 
-echo "cd to $current_path for continue"
-cd $current_path
+echo "Canal-admin 启动失败"

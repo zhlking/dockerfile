@@ -37,9 +37,8 @@ then
 	echo CLASSPATH :$CLASSPATH
 	$JAVA $JAVA_OPTS $JAVA_DEBUG_OPT $CANAL_OPTS -classpath .:$CLASSPATH com.alibaba.otter.canal.deployer.CanalLauncher 2>&1
 
-#	echo $! > $base/bin/canal.pid
-	echo "cd to $current_path for continue"
- 	cd $current_path
+  echo "Canal-admin 启动失败"
+
 else 
 	echo "canal conf("$canal_conf") OR log configration file($logback_configurationFile) is not exist,please create then first!"
 fi
