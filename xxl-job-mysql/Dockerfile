@@ -18,8 +18,12 @@ ADD xxl-job-db.sql /docker-entrypoint-initdb.d/
 #    [ -n $success ];
 
 ENV MYSQL_ROOT_PASSWORD="root" \
-    XXL_JOB_DB_HOST="" \
-    XXL_JOB_DB_PORT="3306" \
     XXL_JOB_DB_NAME="xxl-job" \
     XXL_JOB_DB_USER="xxl-job" \
     XXL_JOB_DB_PASSWD="xxl-job-passwd"
+
+RUN set -eux; \
+    cd /docker-entrypoint-initdb.d/; \
+    sed -i "s/XXL_JOB_DB_NAME/$XXL_JOB_DB_NAME/g" xxl-job-db.sql; \
+    sed -i "s/XXL_JOB_DB_USER/$XXL_JOB_DB_USER/g" xxl-job-db.sql; \
+    sed -i "s/XXL_JOB_DB_PASSWD/$XXL_JOB_DB_PASSWD/g" xxl-job-db.sql
