@@ -24,6 +24,6 @@ ENV MYSQL_ROOT_PASSWORD="root" \
 
 RUN set -eux; \
     cd /docker-entrypoint-initdb.d/; \
-    sed -i "s/XXL_JOB_DB_NAME/$XXL_JOB_DB_NAME/g" xxl-job-db.sql; \
-    sed -i "s/XXL_JOB_DB_USER/$XXL_JOB_DB_USER/g" xxl-job-db.sql; \
-    sed -i "s/XXL_JOB_DB_PASSWD/$XXL_JOB_DB_PASSWD/g" xxl-job-db.sql
+    sed -i "s|XXL_JOB_DB_NAME|$XXL_JOB_DB_NAME|g" xxl-job-db.sql; \
+    sed -i "s|XXL_JOB_DB_USER|$XXL_JOB_DB_USER|g" xxl-job-db.sql; \
+    sed -i "s|XXL_JOB_DB_PASSWD|$XXL_JOB_DB_PASSWD|g" xxl-job-db.sql
