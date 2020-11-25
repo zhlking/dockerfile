@@ -64,7 +64,8 @@ RUN set -eux; \
 #    mv /home/admin/node_exporter-$Metrics_VERSION.linux-amd64 /home/admin/node_exporter; \
     rm -rf canal.deployer-${CANAL_VERSION}.tar.gz \
 #           node_exporter-$Metrics_VERSION.linux-amd64.tar.gz \
-           /home/admin/canal-server/bin/*
+           /home/admin/canal-server/bin/* \
+           /home/admin/canal-server/conf/*.properties
 
 ADD bin/ /home/admin/canal-server/bin/
 

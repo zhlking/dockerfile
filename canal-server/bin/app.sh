@@ -24,11 +24,11 @@ canal.admin.register.cluster = $CANAL_CLUSTER
 EOF
 }
 
-if [ ! -f /home/admin/canal-server/conf/canal.properties ] ; then
+if [ -f /home/admin/canal-server/conf/canal.properties ] ; then
     server_conf_file
 fi
 
 
 sleep 5
 
-cd /home/admin/canal-server/bin/ && gosu admin sh ./startup.sh 2>&1
+cd /home/admin/canal-server/bin/ && gosu admin ./startup.sh 2>&1
