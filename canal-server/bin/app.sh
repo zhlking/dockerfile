@@ -24,10 +24,7 @@ canal.admin.register.cluster = $CANAL_CLUSTER
 EOF
 }
 
-if [ -f /home/admin/canal-server/conf/canal.properties ] ; then
-    server_conf_file
-fi
-
+server_conf_file
 
 sleep 5
 
