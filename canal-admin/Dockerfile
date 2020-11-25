@@ -12,11 +12,11 @@ ENV TZ="Asia/Shanghai" \
     # 数据库用户密码    {spring.datasource.password}
     CANAL_MYSQL_PASSWD=canal \
     # 平台管理账户    {canal.adminUser}
-    CANAL_ADMIN_USER=admin \
+    CANAL_SERVER_USER=admin \
     # 平台管理密码    {canal.adminPasswd}
-    CANAL_ADMIN_PASSWD=admin \
-    # 平台访问端口    ｛server.port｝
-    CANAL_SERVER_PORT=8089
+    CANAL_SERVER_PASSWD=admin \
+    # 平台访问端口    {server.port}
+    CANAL_ADMIN_PORT=8089
 
 #更换源
 RUN set -eux; \

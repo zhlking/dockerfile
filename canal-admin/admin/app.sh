@@ -28,7 +28,7 @@ waitterm() {
 
 function start_admin() {
     echo "start admin ..."
-    cd /home/admin/canal-admin/bin/ && gosu admin sh restart.sh 2>&1
+    cd /home/admin/canal-admin/bin/ && gosu admin sh startup.sh 2>&1
 }
 
 function stop_admin() {
@@ -40,7 +40,7 @@ function stop_admin() {
 function conf_file() {
 cat << EOF > /home/admin/canal-admin/conf/application.yml
 server:
-  port: $CANAL_SERVER_PORT
+  port: $CANAL_ADMIN_PORT
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -56,8 +56,8 @@ spring.datasource:
     maximum-pool-size: 30
     minimum-idle: 1
 canal:
-  adminUser: $CANAL_ADMIN_USER
-  adminPasswd: $CANAL_ADMIN_PASSWD
+  adminUser: $CANAL_SERVER_USER
+  adminPasswd: $CANAL_SERVER_PASSWD
 EOF
 }
 
@@ -69,14 +69,14 @@ echo "==> 开始启动 ..."
 
 start_admin
 
-echo "==> 启动成功 ..."
-
-tail -f /dev/null &
-# wait TERM signal
-waitterm
-
-echo "==> 关闭"
-
-stop_admin
-
-echo "==> 已经关闭 ..."
+#echo "==> 启动成功 ..."
+#
+#tail -f /dev/null &
+## wait TERM signal
+#waitterm
+#
+#echo "==> 关闭"
+#
+#stop_admin
+#
+#echo "==> 已经关闭 ..."

@@ -27,38 +27,9 @@ if [ -z "$JAVA" ] ; then
   JAVA=$(which java)
 fi
 
-ALIBABA_JAVA="/usr/alibaba/java/bin/java"
-TAOBAO_JAVA="/opt/taobao/java/bin/java"
-if [ -z "$JAVA" ]; then
-  if [ -f $ALIBABA_JAVA ] ; then
-  	JAVA=$ALIBABA_JAVA
-  elif [ -f $TAOBAO_JAVA ] ; then
-  	JAVA=$TAOBAO_JAVA
-  else
-  	echo "Cannot find a Java JDK. Please set either set JAVA or put java (>=1.5) in your PATH." 2>&2
-    exit 1
-  fi
-fi
-
-case "$#"
-in
-0 )
-  ;;
-2 )
-  if [ "$1" = "debug" ]; then
-    DEBUG_PORT=$2
-    DEBUG_SUSPEND="n"
-    JAVA_DEBUG_OPT="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=$DEBUG_PORT,server=y,suspend=$DEBUG_SUSPEND"
-  fi
-  ;;
-* )
-  echo "THE PARAMETERS MUST BE TWO OR LESS.PLEASE CHECK AGAIN."
-  exit;;
-esac
-
 str=`file -L $JAVA | grep 64-bit`
 if [ -n "$str" ]; then
-	JAVA_OPTS="-server -Xms2048m -Xmx3072m"
+	JAVA_OPTS="-server -Xms2048m -Xmx2048m"
 else
 	JAVA_OPTS="-server -Xms1024m -Xmx1024m"
 fi
@@ -77,6 +48,6 @@ echo "cd to $bin_abs_path for workaround relative path"
 cd $bin_abs_path
 
 echo CLASSPATH :$CLASSPATH
-$JAVA $JAVA_OPTS $JAVA_DEBUG_OPT $CANAL_OPTS -classpath .:$CLASSPATH com.alibaba.otter.canal.admin.CanalAdminApplication 2>&1 
+$JAVA $JAVA_OPTS $JAVA_DEBUG_OPT $CANAL_OPTS -classpath .:$CLASSPATH com.alibaba.otter.canal.admin.CanalAdminApplication 1>>/dev/null 2>&1
 
-echo "Canal-admin 启动失败"
+#echo "Canal-admin 启动失败"
