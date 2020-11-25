@@ -5,12 +5,13 @@ MAINTAINER zhlking (zhlking@cnklog.com)
 ENV TZ="Asia/Shanghai" \
     # canal-admin访问地址    {canal.admin.manager}
     CANAL_ADMIN_ADDR="" \
+    CANAL_ADMIN_PORT="" \
     # 平台对接账户    {canal.admin.user}
-    CANAL_ADMIN_USER=canal \
+    CANAL_SERVER_USER=admin \
     # 平台对接密码 base64加密   {canal.admin.passwd}
-    CANAL_ADMIN_PASSWD=4ACFE3202A5FF5CF467898FC58AAB1D615029441 \
-    # 可以指定默认注册的集群名，如果不指定，默认注册为单机模式    ｛canal.admin.register.cluster｝
-    CANAL_CLUSTER="Uni_Digit"
+    CANAL_SERVER_PASSWD=4ACFE3202A5FF5CF467898FC58AAB1D615029441 \
+    # 可以指定默认注册的集群名，如果不指定，默认注册为单机模式    {canal.admin.register.cluster}
+    CANAL_CLUSTER=Uni_Digit
 
 #更换源
 RUN set -eux; \
@@ -63,7 +64,7 @@ RUN set -eux; \
 #    mv /home/admin/node_exporter-$Metrics_VERSION.linux-amd64 /home/admin/node_exporter; \
     rm -rf canal.deployer-${CANAL_VERSION}.tar.gz \
 #           node_exporter-$Metrics_VERSION.linux-amd64.tar.gz \
-           /home/admin/canal-server/bin/*.bat
+           /home/admin/canal-server/bin/*
 
 ADD bin/ /home/admin/canal-server/bin/
 
